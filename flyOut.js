@@ -95,13 +95,21 @@ class APP extends React.Component {
 		let {isOpen} = this.state;
 		return (
 			<div>
-				{range(num_children).map( index => {
+				{range(NUM_CHILDREN).map( index => {
 					let style = isOpen ? this.finalChildButtonStyles(index) : this.initialChildButtonStyles();
 					return (
-						<div	
-							key={index}
-							className="child-button"
-							style={style}/>
+						<Motion style={style} key={index}>
+							{({width, height, top, left}) => 
+								<div	
+									className="child-button"
+									style={{
+										width: width,
+										height: height,
+										top: top,
+										left: left
+									}}/>
+							}
+						</Motion>
 					);
 				})}
 				<div 
@@ -111,6 +119,11 @@ class APP extends React.Component {
 			</div>
 		);
 	}	
+
 };
+
+
+
+
 
 module.exports = APP;
